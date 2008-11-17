@@ -1,12 +1,10 @@
 <?php
 interface iDatabase
 {
-	/**
-	 * Enter description here...
-	 *
-	 * @param  $contenttype
-	 * @return boolean
-	 */
-	public function hasContentType($contenttype);
+		
+	public function hasContentDatabaseRelation($contenttype);
+
+	public function createContentDatabaseRelation($contenttype);
+	
 }
 ?>

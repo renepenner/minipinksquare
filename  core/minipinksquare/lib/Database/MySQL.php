@@ -21,7 +21,7 @@ class MySQL implements iDatabase
 		{
 			$query = preg_replace('/\?/', $this->quoteSmart($value), $query, 1);
 		}
-
+		
 		$this->lastquery = $query;
 
 		$result = mysql_query(trim($query), $this->db);
@@ -97,7 +97,7 @@ class MySQL implements iDatabase
 	{
 		$result	= $this->query($query, $values, true);
 		$data	= mysql_fetch_row($result);
-
+		
 		mysql_free_result($result);
 		return is_array($data) ? $data[0] : $default;
 	}
@@ -129,16 +129,62 @@ class MySQL implements iDatabase
 		return (is_numeric($text) && !$quoteNumbers) || $text == 'NULL' ? $text : "'".mysql_real_escape_string($text, $this->db)."'";
 	}
 	
+	function createTable($name, $fields, $primarykey, $indexes = array(), $engine='InnoDB')
+	{
+		$sql = "CREATE TABLE `$name` (";
+		foreach($fields as $field){
+			$sql .= "`".$field['name']."` ".$field['type']."(".$field['length'].") NOT NULL ,";
+		}
+		$sql .= "PRIMARY KEY ( `$primarykey` )";
+		$sql .= count($indexes)>0 ? ", INDEX (`" . implode('`, `', $indexes) . "`)" : "";
+		$sql .= ") ENGINE = $engine";
+		
+/*
+CREATE TABLE `minipinksquare`.`contentvalues_textfield` (
+`id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+`contenttype_id` INT( 11 ) NOT NULL ,
+`page_id` INT( 11 ) NOT NULL ,
+`name` VARCHAR( 255 ) NOT NULL ,
+`value` VARCHAR( 255 ) NOT NULL ,
+PRIMARY KEY ( `id` ) ,
+INDEX ( `contenttype_id` , `page_id` )
+) 
+*/
+	}
+	
+	function existTable($name)
+	{
+		return mysql_query("DESC $name");
+	}
 	
 	// iDatabase interface	
-	public function hasContentType($contenttype){
+	public function hasContentDatabaseRelation($contenttype)
+	{
 		$res = mysql_query('SHOW TABLES', $this->db);
+		$check = false;
 		while($row = mysql_fetch_row($res)){
 			if($row[0] == $table)
-				return true;
+				$check = true;
 		}
-		return false;
+		
+		$res = $this->getValue('SELECT id FROM '.TABLE_CONTENTTYPES.' WHERE `name` = ? ', array($contenttype), false);
+		
+		return $res && $check ? true : false;
 	}
+	
+	public function createContentDatabaseRelation($contenttype)
+	{
+		// Eintrag in die CONTENTTYPES Tabelle
+		if(!$this->getValue('SELECT id FROM '.TABLE_CONTENTTYPES.' WHERE `name` = ? ', array($contenttype), false))
+			$this->insert(TABLE_CONTENTTYPES, array('name' => $contenttype));
+
+		// Anlegen ein Value Tabelle
+		if(!$this->existTable('contentvalues_'.$contenttype)){
+			
+		}
+				
+	}
+	
 }
 
 ?>

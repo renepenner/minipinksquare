@@ -7,6 +7,10 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'minipinksquare');
 
+
+// TABLES
+define('TABLE_CONTENTTYPES', 'contenttypes');
+
 define('PATH_LIB',      	dirname(__FILE__).'/lib/');
 define('INTERFACE_LIB',     dirname(__FILE__).'/lib/interfaces');
 define('CONTENTTYPES_LIB', 	dirname(__FILE__).'/plugins/contenttypes/');
