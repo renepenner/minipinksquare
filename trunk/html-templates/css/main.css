@@ -1,0 +1,273 @@
+/************************************************
+PROJECTNAME
+http://www.comspace.de
+Author: XXX@comspace.de
+Create Date: XX.XX.2008
+
+
+NOT Tested in: 
+PC -> IE 6, IE 7, FF 2, FF 3, Safari 3, Opera 9.2, Opera 9.5
+MAC -> FF 2, FF 3, Safari 3, Opera 9.2
+LINUX-> FF 2, FF 3, Konqueror
+
+************************************************/
+
+/*
+
+
+
+BASE (css reset)
+
+****************************************/
+
+html{color:#000;background:#fff;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0; outline: 0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;font-variant:normal;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+legend{color:#000;}
+a img {border: none;}
+:focus {outline: 0;}
+    
+
+/****************************************
+
+CORE (basic layout/wrappers)
+
+****************************************/
+
+body {
+	background: none;
+	font-family:arial,sans-serif,sans,freesans;
+}
+#frame_wrapper {
+	width: auto;
+	margin:0 auto; /*center*/
+	background: none;
+}
+
+#frame_wrapper_cnt {
+}
+
+/****************************************
+
+LINKS (non-navigation)
+
+****************************************/
+
+a {
+	color: inherit;
+	font-weight:normal;
+	text-transform: none;
+	text-decoration: none;
+}
+a:hover {
+}
+a:active {
+}
+a:visited {
+}
+#frame_header  a{
+}
+#frame_cnt a {
+color: #00f;
+}
+
+/****************************************
+
+HEAD
+
+****************************************/
+
+#frame_header {
+	height: auto;
+	width: auto;
+	clear:left;
+}
+#frame_header #addTagLink{
+	position:absolute;
+	top:5px;
+	left:310px;
+	z-index:2;
+}
+#frame_header ul#tags {
+	position: absolute;
+	top:0;
+	left: 300px;
+	right: 300px;
+	height: 100px;
+	overflow: auto;
+	background: #eee;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding-left: 40px;
+	z-index:1;
+}
+#frame_header ul#tags li {
+	float:left;
+	width: 180px;
+	height:20px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	background: #ddd;
+}
+
+#frame_header ul#tags li.type {
+	background: #ccc;
+}
+
+#frame_header ul#tags li  span {
+	display: block;
+	margin-left: 24px;
+	height: 18px;
+	width: 136px;
+	border: 1px solid #ddd;
+}
+
+#frame_header ul#tags li.type span {
+
+	border: 1px solid #ccc;
+}
+
+#frame_header ul#tags li  input {
+	border: 1px solid #000 !important;
+	margin: 0 -2px -2px 23px!important;
+	background: #fff !important;
+}
+
+#frame_header ul#tags li  a img {
+	float:right;
+	margin-right: 3px;
+}
+#frame_header_logo {
+	height: auto;
+	width: auto;
+}
+
+#frame_header_logo img {/*header image: wide*/
+	height: auto;
+	width: auto;
+}
+
+/****************************************
+
+NAVIGATION
+
+****************************************/
+
+#frame_nav {
+	float:right;
+	width: auto;
+	height: auto;
+}
+
+#frame_nav ul{
+}
+#frame_nav ul li{
+	float:left;
+	border-right: 1px solid #fff;
+}
+
+#frame_nav ul li a{
+	display: block;
+	padding: 10px;
+	color:#fff;
+	background: #aaa;
+	float:left;
+	width: auto;
+	height: auto;
+}
+#frame_nav ul li a:hover{
+	background: #eee;
+	color: #000;
+}
+
+				/*** SUBNAV ***/
+
+#frame_subnav {
+	width: auto;
+	height: auto;
+}
+
+#frame_subnav ul {
+}
+
+#frame_subnav ul li{
+	float:none;
+}
+
+#frame_subnav ul li a{
+	display: inline;
+	float:none;
+	width: auto;
+	height: auto;
+}
+
+/****************************************
+
+CONTENT 
+
+****************************************/
+
+#frame_cnt {
+position: absolute;
+top: 0;
+bottom: 40px;
+left:0; right:0;
+}
+
+
+/****************************************
+
+CONTENT  LEFT OR RIGHT 
+
+****************************************/
+
+#frame_cnt_col {
+	width:auto;
+	float:none; 
+	padding: 0 0 0 0;
+}
+
+#frame_cnt_col h1, #frame_cnt_col h2 {
+	color: inherit;
+	font-size: inherit; /*12px*/
+}
+
+#frame_cnt_col p {
+	color: inherit;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+/****************************************
+
+FOOT
+
+****************************************/
+
+div#frame_foot {
+	height: 40px;
+	position:absolute;
+	bottom: 0px;
+	left:0; right:0;
+	background: none;
+}
+
+div#frame_foot p{
+	color: inherit;
+	font-size:inherit;
+}
+
+div#frame_foot p span{
+}
+

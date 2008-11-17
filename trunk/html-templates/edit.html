@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>BINtest</title>
+	<script language="Javascript" type="text/javascript" src="./js/edit_area/edit_area_full_with_plugins.js"></script>
+	<script language="Javascript" type="text/javascript" src="./js/mootools-1.2.1-core.js"></script>
+	<!--<script language="Javascript" type="text/javascript" src="./js/mootools_splitter.js"></script>-->
+	<script language="Javascript" type="text/javascript" src="./js/mootools_tabswapper.js"></script>
+	<script language="Javascript" type="text/javascript" src="./js/bin.js"></script>
+
+	<script language="Javascript" type="text/javascript" src="./js/init_editarea.js"></script>
+	<link type="text/css" href="./css/main.css" rel="stylesheet" />
+	<link type="text/css" href="./css/cnt.css" rel="stylesheet" />
+</head>
+<body>
+<div id="frame_nav">
+
+</div>
+<!--FRAME_CNT-->
+<div id="frame_cnt">
+	<!--CNT_MAIN-->
+	<div id="cnt_main">
+		<ul class="tabSet">
+			<li class="off"><a>Dashboard</a></li>
+			<li class="off"><a>Content</a></li>
+			<li class="off"><a>Admin</a></li>
+		</ul>
+		<div class="panelSet">
+			<div class="panel">here be Dashboard</div>
+			<div class="panel">here be Content-Editing (framed)</div>
+			<div class="panel">here be Admin (editor)<br />
+			<textarea id="main_edit" name="test_2">
+			</textarea>
+			</div>
+		</div>
+	</div>
+	<!--!CNT_MAIN-->
+	<!--CNT_CONTEXT-->
+	<div id="cnt_context">
+	<ul>
+		<li class="cnt_context_box context_box_logo">
+		<h1>mini<strong>pink</strong>square</h1><img src="./img/img_pinksquare_logo.jpg" />
+		</li>
+		<li class="cnt_context_box context_box_projectname">
+		projektname
+		</li>
+		<li class="cnt_context_box context_box_search">
+		<input type="text" name="content_box_search_input" id="cnt_content_box_search_input">
+		</li>
+		<li class="cnt_context_box context_box_tree">
+		[tree]
+		</li>
+	</ul>
+	</div>
+	<!--!CNT_CONTEXT-->
+</div>
+<!--!FRAME_CNT-->
+<div id="frame_foot">
+	footer.
+</div>
+</body>
+</html>
