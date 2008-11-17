@@ -6,6 +6,6 @@
  */
 interface iContent
 {	
-	public function initTable();
+	public function initContenttype();
 }
 ?>

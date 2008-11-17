@@ -7,11 +7,11 @@ class ContentTextfield extends Content implements iContent
 		parent::__construct();
 	}
 	
-	public function initTable(){
-		if($this->db->hasTable($this->contentname)){
-			echo "Tabelle existiert schon!";
+	public function initContenttype(){
+		if($this->db->hasContenttype($this->contentname)){
+			echo "Contenttype existiert schon!";
 		}else{
-			echo "Tabelle wird angelegt";
+			echo "Contenttype wird angelegt";
 		}
 	}
 }
