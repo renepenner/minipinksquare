@@ -1,6 +1,7 @@
 <?php
 abstract class Content 
 {
+		
 	protected $db;
 	
 	public function Content(){
