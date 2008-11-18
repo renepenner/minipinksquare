@@ -7,5 +7,9 @@ interface iDatabase
 	public function createContentDatabaseRelation($contenttype, $type);
 	
 	public function getDriverFieldtype($key);
+	
+	public function createTable($name, $fields, $primarykey, $indexes = array(), $engine='');
+
+	public function existTable($name);
 }
 ?>
