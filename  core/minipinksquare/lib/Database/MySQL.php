@@ -133,7 +133,7 @@ class MySQL implements iDatabase, iDatatypes
 	{
 		$sql = "CREATE TABLE `$name` (";
 		foreach($fields as $field){
-			$sql .= "`".$field['name']."` ".$field['type']."(".$field['length'].") ".( isset($field['extra']) ? $field['extra'] : '' ).",";
+			$sql .= "`".$field['name']."` ".$field['type'] . ($field['length'] > 0 ? "(".$field['length'].")" : "").( isset($field['extra']) ? $field['extra'] : '' ).",";
 		}
 		$sql .= "PRIMARY KEY ( `$primarykey` )";
 		$sql .= count($indexes)>0 ? ", INDEX (`" . implode('`, `', $indexes) . "`)" : "";

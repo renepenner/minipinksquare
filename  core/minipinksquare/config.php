@@ -9,8 +9,11 @@ define('DB_NAME', 'minipinksquare');
 
 
 // TABLES
-define('TABLE_CONTENTTYPES', 'contenttypes');
+define('TABLE_CONTENTTYPES', 	'contenttypes');
+define('TABLE_TEMPLATES', 		'templates');
+define('TABLE_PAGES', 			'pages');
 
+// PATH
 define('PATH_LIB',      	dirname(__FILE__).'/lib/');
 define('INTERFACE_LIB',     dirname(__FILE__).'/lib/interfaces');
 define('CONTENTTYPES_LIB', 	dirname(__FILE__).'/plugins/contenttypes/');
