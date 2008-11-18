@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
 
-$ctf = new ContentTextfield();
+$page = new Page(1);
+$page->show();
 ?>

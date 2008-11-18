@@ -8,12 +8,10 @@ class ContentTextfield extends Content implements iContent, iDatatypes
 	}
 	
 	public function initContenttype(){
-		if($this->db->hasContentDatabaseRelation($this->contentname)){
-			echo "Contenttype existiert schon!";
-		}else{
+		if(! $this->db->hasContentDatabaseRelation($this->contentname)){
 			$this->db->createContentDatabaseRelation($this->contentname, iDatatypes::TEXTFIELD);
-			echo "Contenttype wird angelegt";
 		}
 	}
+	
 }
 ?>
