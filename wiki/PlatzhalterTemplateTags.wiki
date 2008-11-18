@@ -1,0 +1,11 @@
+#labels Phase-Implementation
+#In Templates kann man PlatzhalterTags benutzen um variabel Inhalte einzubauen.
+
+= Introduction =
+Tags müssen folgendermaßen aussehen:
+
+<mps:textfiled name="meinplatzhalter" />
+
+mps = prefix um zu definieren, das es mps (miniPinkSquare) sind
+textfield = Contenttype das den Platzhalter beinhaltet
+name = der Name des Platzhalters
