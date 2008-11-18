@@ -129,11 +129,11 @@ class MySQL implements iDatabase, iDatatypes
 		return (is_numeric($text) && !$quoteNumbers) || $text == 'NULL' ? $text : "'".mysql_real_escape_string($text, $this->db)."'";
 	}
 	
-	function createTable($name, $fields, $primarykey, $indexes = array(), $engine='InnoDB')
+	public function createTable($name, $fields, $primarykey, $indexes = array(), $engine='InnoDB')
 	{
 		$sql = "CREATE TABLE `$name` (";
 		foreach($fields as $field){
-			$sql .= "`".$field['name']."` ".$field['type']."(".$field['length'].") NOT NULL ,";
+			$sql .= "`".$field['name']."` ".$field['type']."(".$field['length'].") ".( isset($field['extra']) ? $field['extra'] : '' ).",";
 		}
 		$sql .= "PRIMARY KEY ( `$primarykey` )";
 		$sql .= count($indexes)>0 ? ", INDEX (`" . implode('`, `', $indexes) . "`)" : "";
@@ -172,7 +172,7 @@ class MySQL implements iDatabase, iDatatypes
 		// Anlegen ein Value Tabelle
 		if(!$this->existTable('contentvalues_'.$contenttype)){
 			$fields = array(
-				array('name' => 'id', 				'type' => 'INT', 		'length' =>	11),
+				array('name' => 'id', 				'type' => 'INT', 		'length' =>	11, 	'extra' => 'AUTO_INCREMENT'),
 				array('name' => 'contenttype_id', 	'type' => 'INT', 		'length' =>	11),
 				array('name' => 'page_id',	 		'type' => 'INT', 		'length' =>	11),
 				array('name' => 'name',				'type' => 'VARCHAR', 	'length' =>	255),
@@ -192,7 +192,7 @@ class MySQL implements iDatabase, iDatatypes
 				return array('name' => "value", 'type' => 'LONGTEXT', 'length' => "");
 				break;
 			case MySQL::BINARY:
-				return array('name' => "value", 'type' => 'LONGTEXT', 'length' => "");
+				return array('name' => "value", 'type' => '', 'length' => "");
 				break;			
 		}
 	}
