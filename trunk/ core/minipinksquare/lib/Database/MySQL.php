@@ -1,5 +1,5 @@
 <?
-class MySQL implements iDatabase 
+class MySQL implements iDatabase, iDatatypes 
 {
 	var $db;
 	var $lastquery;
@@ -139,17 +139,7 @@ class MySQL implements iDatabase
 		$sql .= count($indexes)>0 ? ", INDEX (`" . implode('`, `', $indexes) . "`)" : "";
 		$sql .= ") ENGINE = $engine";
 		
-/*
-CREATE TABLE `minipinksquare`.`contentvalues_textfield` (
-`id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
-`contenttype_id` INT( 11 ) NOT NULL ,
-`page_id` INT( 11 ) NOT NULL ,
-`name` VARCHAR( 255 ) NOT NULL ,
-`value` VARCHAR( 255 ) NOT NULL ,
-PRIMARY KEY ( `id` ) ,
-INDEX ( `contenttype_id` , `page_id` )
-) 
-*/
+		$this->query($sql);
 	}
 	
 	function existTable($name)
@@ -160,29 +150,51 @@ INDEX ( `contenttype_id` , `page_id` )
 	// iDatabase interface	
 	public function hasContentDatabaseRelation($contenttype)
 	{
+		$contenttype = strtolower($contenttype);
 		$res = mysql_query('SHOW TABLES', $this->db);
 		$check = false;
 		while($row = mysql_fetch_row($res)){
-			if($row[0] == $table)
+			if($row[0] == 'contentvalues_'.$contenttype)
 				$check = true;
 		}
 		
 		$res = $this->getValue('SELECT id FROM '.TABLE_CONTENTTYPES.' WHERE `name` = ? ', array($contenttype), false);
-		
-		return $res && $check ? true : false;
+		return $res && $check;
 	}
 	
-	public function createContentDatabaseRelation($contenttype)
+	public function createContentDatabaseRelation($contenttype, $type)
 	{
+		$contenttype = strtolower($contenttype);
 		// Eintrag in die CONTENTTYPES Tabelle
 		if(!$this->getValue('SELECT id FROM '.TABLE_CONTENTTYPES.' WHERE `name` = ? ', array($contenttype), false))
 			$this->insert(TABLE_CONTENTTYPES, array('name' => $contenttype));
 
 		// Anlegen ein Value Tabelle
 		if(!$this->existTable('contentvalues_'.$contenttype)){
-			
+			$fields = array(
+				array('name' => 'id', 				'type' => 'INT', 		'length' =>	11),
+				array('name' => 'contenttype_id', 	'type' => 'INT', 		'length' =>	11),
+				array('name' => 'page_id',	 		'type' => 'INT', 		'length' =>	11),
+				array('name' => 'name',				'type' => 'VARCHAR', 	'length' =>	255),
+				$this->getDriverFieldtype($type)
+			);
+			$this->createTable('contentvalues_'.$contenttype, $fields, $fields[0]['name'], array('contenttype_id', 'page_id'));
 		}
 				
+	}
+	
+	public function getDriverFieldtype($type){
+		switch ($type){
+			case MySQL::TEXTFIELD:
+				return array('name' => "value", 'type' => 'VARCHAR', 'length' => "255");
+				break;
+			case MySQL::TEXT:
+				return array('name' => "value", 'type' => 'LONGTEXT', 'length' => "");
+				break;
+			case MySQL::BINARY:
+				return array('name' => "value", 'type' => 'LONGTEXT', 'length' => "");
+				break;			
+		}
 	}
 	
 }

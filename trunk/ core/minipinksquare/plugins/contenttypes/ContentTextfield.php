@@ -1,5 +1,5 @@
 <?php
-class ContentTextfield extends Content implements iContent 
+class ContentTextfield extends Content implements iContent, iDatatypes 
 {
 	private $contentname = "Textfield";
 	
@@ -11,7 +11,7 @@ class ContentTextfield extends Content implements iContent
 		if($this->db->hasContentDatabaseRelation($this->contentname)){
 			echo "Contenttype existiert schon!";
 		}else{
-			$this->db->createContentDatabaseRelation($this->contentname);
+			$this->db->createContentDatabaseRelation($this->contentname, iDatatypes::TEXTFIELD);
 			echo "Contenttype wird angelegt";
 		}
 	}
