@@ -197,6 +197,33 @@ class MySQL implements iDatabase, iDatatypes
 		}
 	}
 	
+	public function storeTemplate(Template $t){
+		// Bestehendes Template wurde bearbeitet
+		if($t->getId()){
+			$data = array('name' => $t->getName(), 'template' => $t->getTemplate()); 
+			$this->update(TABLE_TEMPLATES, "id=".$t->getId(), $data);
+			return $t->getId();
+		}
+		// neues Template wird angelegt
+		else{
+			$data = array('name' => $t->getName(), 'template' => $t->getTemplate()); 
+			return $this->insert(TABLE_TEMPLATES, $data);
+		}
+	}
+	
+	public function storePage(Page $p){
+	// Bestehende Seite wurde bearbeitet
+		if($p->getId()){
+			$data = array('name' => $p->getName(), 'template_id' => $p->getTemplate()->getId()); 
+			$this->update(TABLE_PAGES, "id=".$p->getId(), $data);
+			return $p->getId();
+		}
+		// neue Seite wird angelegt
+		else{
+			$data = array('name' => $p->getName(), 'template_id' => $p->getTemplate()->getId() ); 
+			return $this->insert(TABLE_PAGES, $data);
+		}
+	}
 }
 
 ?>

@@ -5,8 +5,7 @@ abstract class Content
 	protected $db;
 	
 	public function Content(){
-		$db_singleton = DatabaseSingleton::singleton();
-		$this->db = $db_singleton->getDatabase();
+		$this->db = DatabaseSingleton::singleton()->getDatabase();
 		$this->initContenttype();
 	}
 }

@@ -1,6 +1,7 @@
 <?php
 class Template{
 	
+	private $id;
 	private $template;
 	private $name;
 	private $db;
@@ -11,6 +12,10 @@ class Template{
 		if($id) $this->init($id);
 	}
 	
+	public function getId(){
+		return $this->id;
+	}
+	
 	public function getPlaceholder(){
 		return $this->placeholder;
 	}
@@ -19,12 +24,30 @@ class Template{
 		return $this->template;
 	}
 	
+	public function getName(){
+		return $this->name;
+	}
+	
 	private function init($id){
+		$this->id = $id;
+		
 		$res = $this->db->getAll("SELECT * FROM ".TABLE_TEMPLATES." WHERE id = $id");
 		
 		$this->name 	= $res[0]['name'];
 		$this->template = $res[0]['template'];
 		$this->renderTemplate();
+	}
+	
+	public function setTemplate($template){
+		$this->template = $template;
+	}
+	
+	public function setName($name){
+		$this->name = $name;
+	}
+	
+	public function store(){
+		$this->id = $this->db->storeTemplate($this);
 	}
 	
 	private function renderTemplate(){
