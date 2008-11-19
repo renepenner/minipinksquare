@@ -17,5 +17,9 @@ interface iDatabase
 	public function createTable($name, $fields, $primarykey, $indexes = array(), $engine='');
 
 	public function existTable($name);
+	
+	public function storeTemplate(Template $t);
+	
+	public function storePage(Page $p);
 }
 ?>

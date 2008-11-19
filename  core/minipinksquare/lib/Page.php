@@ -21,7 +21,31 @@ class Page{
 		$this->renderPage();
 	}
 	
-	private function renderPage(){
+	public function getId(){
+		return $this->id;
+	}
+	
+	public function getName(){
+		return $this->name;
+	}
+	
+	public function setName($name){
+		$this->name = $name;
+	}
+		
+	/**
+	 * 
+	 * @return Template
+	 */
+	public function getTemplate(){
+		return $this->template;
+	}
+	
+	public function setTemplate(Template $t){
+		$this->template = $t;
+	}
+	
+	public function renderPage(){
 		$content = $this->template->getTemplate();
 		foreach($this->template->getPlaceholder() as $placeholder){
 			$sql = "SELECT value FROM contentvalues_".$placeholder['type']." WHERE page_id = ".$this->id." AND name = '".$placeholder['attribute']['name']."'";
@@ -32,7 +56,12 @@ class Page{
 	}
 	
 	public function show(){
-		echo $this->content;
+		return $this->content;
+	}
+	
+	public function store(){
+		// Seite updaten
+		$this->id = $this->db->storePage($this);
 	}
 }
 ?>
