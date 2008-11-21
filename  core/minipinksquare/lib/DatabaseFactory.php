@@ -2,16 +2,16 @@
 class DatabaseFactory
 {
 	/**
-	 * Enter description here...
+	 *
 	 *
 	 * @param string $type
 	 * @return iDatabase
 	 */
 	static function factory($type)
 	{		
-		if (include_once 'Database/' . $type . '.php') {
-            $classname = $type;
-            return new $classname;
+		if (require_once 'Database/' . $type . '.php') {
+            set_include_path(get_include_path() . PATH_SEPARATOR . PATH_LIB . 'Database/'. $type.'/');
+            return new $type;
         } else {
             throw new Exception ('Treiber nicht gefunden');
         }

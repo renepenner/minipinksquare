@@ -9,9 +9,11 @@ define('DB_NAME', 'minipinksquare');
 
 
 // TABLES
-define('TABLE_CONTENTTYPES', 	'contenttypes');
-define('TABLE_TEMPLATES', 		'templates');
-define('TABLE_PAGES', 			'pages');
+define('TABLE_CONTENTTYPES', 		'contenttypes');
+define('TABLE_TEMPLATES', 			'templates');
+define('TABLE_PAGES', 				'pages');
+define('TABLE_CONTENTVALUES_PREFIX','contentvalues_');
+
 
 // PATH
 define('PATH_LIB',      	dirname(__FILE__).'/lib/');

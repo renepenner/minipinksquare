@@ -45,11 +45,7 @@ class Template{
 	public function setName($name){
 		$this->name = $name;
 	}
-	
-	public function store(){
-		$this->id = $this->db->storeTemplate($this);
-	}
-	
+		
 	private function renderTemplate(){
 		preg_match_all('/(?<tag><mps:(?<type>.*?) (?<attribute>.*?)\/>)/i', $this->template, $res);
 		for($i=0;$i<count($res[0]);$i++){
@@ -65,6 +61,12 @@ class Template{
 		}		
 		return $this->template;
 	}
-
+	
+	/**
+	 * Save this Instance
+	 */
+	public function store(){
+		$this->id = $this->db->storeTemplate($this);
+	}
 }
 ?>
