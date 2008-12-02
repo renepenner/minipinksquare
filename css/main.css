@@ -86,7 +86,7 @@ color: #00f;
 HEAD
 
 ****************************************/
-
+/* 
 #frame_header {
 	height: auto;
 	width: auto;
@@ -153,17 +153,17 @@ HEAD
 	width: auto;
 }
 
-#frame_header_logo img {/*header image: wide*/
+#frame_header_logo img {
 	height: auto;
 	width: auto;
-}
+} */
 
 /****************************************
 
 NAVIGATION
 
 ****************************************/
-
+/* 
 #frame_nav {
 	float:right;
 	width: auto;
@@ -189,11 +189,11 @@ NAVIGATION
 #frame_nav ul li a:hover{
 	background: #eee;
 	color: #000;
-}
+} */
 
 				/*** SUBNAV ***/
 
-#frame_subnav {
+/* #frame_subnav {
 	width: auto;
 	height: auto;
 }
@@ -211,13 +211,13 @@ NAVIGATION
 	width: auto;
 	height: auto;
 }
-
+ */
 /****************************************
 
 CONTENT 
 
 ****************************************/
-
+/* 
 #frame_cnt {
 position: absolute;
 top: 0;
@@ -225,13 +225,13 @@ bottom: 40px;
 left:0; right:0;
 }
 
-
+ */
 /****************************************
 
 CONTENT  LEFT OR RIGHT 
 
 ****************************************/
-
+/* 
 #frame_cnt_col {
 	width:auto;
 	float:none; 
@@ -240,7 +240,7 @@ CONTENT  LEFT OR RIGHT
 
 #frame_cnt_col h1, #frame_cnt_col h2 {
 	color: inherit;
-	font-size: inherit; /*12px*/
+	font-size: inherit; /*12px
 }
 
 #frame_cnt_col p {
@@ -248,13 +248,13 @@ CONTENT  LEFT OR RIGHT
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 }
-
+ */
 /****************************************
 
 FOOT
 
 ****************************************/
-
+/* 
 div#frame_foot {
 	height: 40px;
 	position:absolute;
@@ -270,4 +270,4 @@ div#frame_foot p{
 
 div#frame_foot p span{
 }
-
+ */
