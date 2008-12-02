@@ -1,0 +1,21 @@
+img.jxSnapOpened {
+  position: absolute;
+  cursor: pointer;
+  width: 5px;
+  height: 14px;
+  background-image: url(../img/snapper.png);
+  background-position: left 14px;
+  top: 50%;
+  left: 0;
+}
+
+img.jxSnapClosed {
+  position: absolute;
+  cursor: pointer;
+  width: 5px;
+  height: 14px;
+  background-image: url(../img/snapper.png);
+  background-position: left 0px;
+  top: 50%;
+  left: 0;
+}

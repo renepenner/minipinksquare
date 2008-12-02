@@ -51,7 +51,7 @@ em {
 CONTEXT
 
 ****************************************/
-#cnt_main {
+/* #cnt_main {
 	padding: 0 10px;
 	position:absolute;
 	left: 150px;
@@ -108,12 +108,12 @@ CONTEXT
 	right:0;
 	bottom:25px;
 	overflow:visible;
-}
+} */
 /*
 
 EDITOR
 
-*/
+*//* 
 #cnt_main {
 	bottom:0;
 	height:100%;
@@ -130,7 +130,7 @@ width: 100%;
 height: 100%;
 border: 1px solid #000;
 border-width: 1px 0;
-}
+} */
 
 
 /*
@@ -138,11 +138,11 @@ border-width: 1px 0;
 splitter
 
 */
-
+/* 
 .mootoolsSplitterHandle0 {
 	background: url(../img/bg_mootools_splitter_0.gif);
 }
-
+ */
 
 /*
 
