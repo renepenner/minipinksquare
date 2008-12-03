@@ -14,5 +14,12 @@ class Placeholder{
 	{
 	
 	}
+
+	public function toArray(){
+		return array(
+			'name' 			=> $this->name,
+			'contenttype'	=> array()
+		);
+	}
 }
 ?>

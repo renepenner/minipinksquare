@@ -74,6 +74,39 @@ class MySQL implements iDatabase, iDatatypes
 			return $this->helper->insert(TABLE_PAGES, $data);
 		}
 	}
+
+
+	/**
+	 * returns a ContentClass object
+	 *
+	 * @param int $id
+	 * @return ContentClass
+	 */
+	public function getContentClass($id){
+		$row = $this->helper->getRow("SELECT * FROM ".TABLE_CONTENTCLASS." WHERE id = $id");
+		if(!$row) throw new Exception('Datensatz mit dieser ID nicht gefunden');
+		$c = new ContentClass();
+		$c->setId($row['id']);
+		$c->setName($row['name']);
+		return $c;
+	}
+
+	/**
+	 * returns a ContentClassList object
+	 *
+	 * @return ContentClassList
+	 */
+	public function getAllContentClass(){
+		$cl = new ContentClassList();
+		$res = $this->helper->getAll("SELECT * FROM ".TABLE_CONTENTCLASS);
+		foreach($res as $row){
+			$c = new ContentClass();
+			$c->setId($row['id']);
+			$c->setName($row['name']);
+			$cl->add($c);
+		}
+		return $cl;
+	}
 }
 
 ?>

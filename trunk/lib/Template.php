@@ -68,5 +68,9 @@ class Template{
 	public function store(){
 		$this->id = $this->db->storeTemplate($this);
 	}
+
+	public function toArray(){
+		return array();
+	}
 }
 ?>
