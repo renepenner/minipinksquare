@@ -107,6 +107,16 @@ class MySQL implements iDatabase, iDatatypes
 		}
 		return $cl;
 	}
+
+	public function addContentClass($name){		
+		try{
+			$res = array('success' => true, 'id' => $this->helper->insert(TABLE_CONTENTCLASS, array('name' => $name)));
+			return $res;
+		}
+		catch (Exception $e){
+			return array('success' => false);
+		}
+	}
 }
 
 ?>

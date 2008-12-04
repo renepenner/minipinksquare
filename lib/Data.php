@@ -25,5 +25,9 @@ class Data{
 	{
 		return $this->db->getAllContentClass();	
 	}
+
+	public function addContentClass($name){
+		return $this->db->addContentClass($name);
+	}
 }
 ?>

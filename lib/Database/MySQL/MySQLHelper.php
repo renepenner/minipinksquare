@@ -6,8 +6,10 @@ class MySQLHelper{
 	
 	public function __construct($host, $user, $pass, $name)
 	{
-		$db		= mysql_connect($host, $user, $pass) or die('Connection failed: '.mysql_error());
-		$result	= mysql_select_db($name, $db) or die('Database error: '.mysql_error());
+		$db		= mysql_connect($host, $user, $pass);
+		if(!$db) throw new Exception('Connection failed: '.mysql_error());
+		$result	= mysql_select_db($name, $db);
+		if(!$result) throw new Exception('Database error: '.mysql_error());
 
 		mysql_set_charset("utf8", $db);
 
@@ -27,9 +29,7 @@ class MySQLHelper{
 		
 		if (!$result)
 		{
-			$error = '<b>Error in SQL-Statement:</b> <pre>'.$query.'</pre><br><b>Message:</b> <pre>'.mysql_error().'</pre>';
-			trigger_error($error, E_USER_WARNING);
-			die();
+			throw new Exception('<b>Error in SQL-Statement:</b> <pre>'.$query.'</pre><br><b>Message:</b> <pre>'.mysql_error().'</pre>');		
 		}
 
 		return $returnResult ? $result : true;

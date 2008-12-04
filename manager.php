@@ -5,7 +5,7 @@
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<script type="text/javascript" src="js/mootools-1.2.1-core.js"></script>
-		<script type="text/javascript" src="js/mootools-1.2.1-more.js"></script>
+		<script type="text/javascript" src="js/mootools-1.2-more.js"></script>
 		<script type="text/javascript" src="js/miniPinkSquare.js"></script>
 	</head>
 	
@@ -13,12 +13,16 @@
 		<h1>miniPinkSquare</h1>
 		<h2>Contentklassen</h2>
 		<ul id="contentclasses"></ul>
-		<form id="createContentClass">
-			<fieldset>			
-				<legend>Create a new ContentClass</legend>			
-				<label for="name">Name</label><input type="text" name="name" />	
-				<input type="submit" name="create" value="create" />				
-			</fieldset>
-		</form>
+		<div>
+			<a href="" id="addContentClass">add</a>
+			<form action="handleRequest.php" method="post" id="createContentClass" style="display:none">				
+				<fieldset>				
+					<legend>Create a new ContentClass</legend>
+					<input type="hidden" name="method" value="addContentClass" />		
+					<label for="name">Name</label><input type="text" name="name" />	
+					<input type="submit" name="create" value="create" />				
+				</fieldset>
+			</form>
+		</div>		
 	</body>
 </html>

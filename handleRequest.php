@@ -3,7 +3,9 @@ include 'config.php';
 
 $functions = array(
 	'getContentClass'		=> array('class' => 'Data',		'method' => 'getContentClass',			'params' => array("id")),
-	'getAllContentClass'	=> array('class' =>	'Data',		'method' => 'getAllContentClass',		'params' => array())
+	'getAllContentClass'	=> array('class' =>	'Data',		'method' => 'getAllContentClass',		'params' => array()),
+	'addContentClass'		=> array('class' => 'Data',		'method' => 'addContentClass',			'params' => array('name'))
+
 );
 
 $key = $_REQUEST['method'];
@@ -29,7 +31,11 @@ try {
 	    }
 	    	   
 	    eval('$result = call_user_func($m'.$params.');');
-	    echo json_encode($result->toArray());	
+	    
+	    if(is_object($result))
+	    	echo json_encode($result->toArray());
+	    else
+	    	echo json_encode($result);
 	    
 	}else{
 		throw new Exception('call a undefind function');
