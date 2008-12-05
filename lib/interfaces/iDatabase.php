@@ -9,5 +9,12 @@ interface iDatabase
 	
 	public function createContentDatabaseRelation($contenttype, $type);
 	
+	// ContentClass
+	public function getContentClass($id);
+	public function getAllContentClass();
+	public function addContentClass($name);
+	public function updateContentClass(ContentClass $instance);
+	public function delContentClass($id);
+	
 }
 ?>

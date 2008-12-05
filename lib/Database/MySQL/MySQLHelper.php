@@ -6,9 +6,9 @@ class MySQLHelper{
 	
 	public function __construct($host, $user, $pass, $name)
 	{
-		$db		= mysql_connect($host, $user, $pass);
+		$db		= @mysql_connect($host, $user, $pass);
 		if(!$db) throw new Exception('Connection failed: '.mysql_error());
-		$result	= mysql_select_db($name, $db);
+		$result	= @mysql_select_db($name, $db);
 		if(!$result) throw new Exception('Database error: '.mysql_error());
 
 		mysql_set_charset("utf8", $db);
