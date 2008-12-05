@@ -74,41 +74,39 @@ window.addEvent('domready', function(){
 	var tree = new Jx.Tree({parent: $('mainAppLayoutContextLeft').getElements('.jxPanelContent')[1]});
 
     /* you can put an item right into the tree */
-    var item = new Jx.TreeFolder({
-        label: 'page',
+    var contentclasses = new Jx.TreeFolder({
+        label: 'Content Klassen',
         image: 'img/folder_16.png'
     });
-    tree.append(item);
-	item.expand();
+    tree.append(contentclasses);
+	contentclasses.expand();
 	
-    var item2 = new Jx.TreeFolder({
-        label: 'saeng',
-        image: 'img/folder_16.png',
-        onClick: function() {
-            debug('you clicked the bug!');
-        }
-    });
-    item.append(item2);
+	var myRequest = new Request.JSON({	
+		method: 	'post', 
+		url: 		'handleRequest.php',
+		data:		{method: 'getAllContentClass'}
+	});
+	
+	myRequest.addEvent('onComplete', function(response){
+		console.log(response);
+		response.each(function(item){
+			var item = new Jx.TreeItem({
+		        label: item.name,
+		        image: 'img/folder_16.png',
+		        onClick: function() {
+		            debug('you clicked the bug!');
+		        }
+		    });
+		    contentclasses.append(item);
+		});		 
+	});
+	myRequest.send();
+	
+	
+   
 
 	
-    var item3 = new Jx.TreeItem({
-        label: 'saeng',
-        image: 'img/folder_16.png',
-        onClick: function() {
-            debug('you clicked the bug!');
-        }
-    });
-    item2.append(item3);
 
-	
-    var item4 = new Jx.TreeItem({
-        label: 'saeng',
-        image: 'img/folder_16.png',
-        onClick: function() {
-            debug('you clicked the bug!');
-        }
-    });
-    item2.append(item4);
 
 	
 	/*content - main+sidebar*/
