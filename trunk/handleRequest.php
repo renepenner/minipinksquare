@@ -4,8 +4,8 @@ include 'config.php';
 $functions = array(
 	'getContentClass'		=> array('class' => 'Data',		'method' => 'getContentClass',			'params' => array("id")),
 	'getAllContentClass'	=> array('class' =>	'Data',		'method' => 'getAllContentClass',		'params' => array()),
-	'addContentClass'		=> array('class' => 'Data',		'method' => 'addContentClass',			'params' => array('name'))
-
+	'addContentClass'		=> array('class' => 'Data',		'method' => 'addContentClass',			'params' => array('name')),
+	'delContentClass'		=> array('class' => 'Data',		'method' => 'delContentClass',			'params' => array('id'))
 );
 
 $key = $_REQUEST['method'];
@@ -31,11 +31,8 @@ try {
 	    }
 	    	   
 	    eval('$result = call_user_func($m'.$params.');');
-	    
-	    if(is_object($result))
-	    	echo json_encode($result->toArray());
-	    else
-	    	echo json_encode($result);
+
+    	echo json_encode($result->toArray());
 	    
 	}else{
 		throw new Exception('call a undefind function');
@@ -43,6 +40,6 @@ try {
 }
 catch (Exception $e )
 {    	
-	echo 'Es gab einen Fehler: '. $e->getMessage();
+	 echo json_encode(array('error' => true, 'msg' => $e->getMessage()));
 }
 ?>

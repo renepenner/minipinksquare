@@ -28,11 +28,11 @@ var MiniPinkSquare = new Class({
 			});
 			
 			myRequest.addEvent('onComplete', function(json){
-				if(json.success){
+				if(!json.error){
 					this.addContentClass(json.id);
 					alert('success');
 				}else{
-					alert('failure');
+					alert('Error:\n'+json.msg);
 				}
 			}.bind(this));
 			myRequest.send(e.target.toQueryString());
@@ -40,7 +40,7 @@ var MiniPinkSquare = new Class({
 	},
 	
 	getRequest: function(method, params){
-		var params = {method: method};		
+		params.method = method;
 		var myRequest = new Request.JSON({	
 			method: 	'post', 
 			url: 		'handleRequest.php',
@@ -73,8 +73,26 @@ var MiniPinkSquare = new Class({
 			myRequest.send();
 			name = myRequest.response.json.name;
 		}
-		var el = new Element('li', {'id': id,'text': name});
+		
+		var button = new Element('button', {'text': 'del'}).addEvent('click', function(e){
+			this.delContentClass(id);
+		}.bind(this));		
+		var el = new Element('li', {'id': 'contentclass_'+id,'text': name});
+		el.grab(button);
 		$('contentclasses').grab(el);
+	},
+	
+	delContentClass: function(id){
+		var req = this.getRequest('delContentClass', {'id': id});
+		req.addEvent('onComplete', function(response){
+			if(!response.error){
+				$('contentclass_'+id).destroy();
+				alert('erfolgreich gelöscht!')
+			}else{
+				alert('ContentClass mit der id '+id+' konnte nicht gelöscht werden');
+			}
+		});	
+		req.send();
 	}
 
 });

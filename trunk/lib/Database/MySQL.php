@@ -108,14 +108,29 @@ class MySQL implements iDatabase, iDatatypes
 		return $cl;
 	}
 
+	/**
+	 * Returns the created ContentClass
+	 *
+	 * @param int $name
+	 * @return ContentClass
+	 */
 	public function addContentClass($name){		
 		try{
-			$res = array('success' => true, 'id' => $this->helper->insert(TABLE_CONTENTCLASS, array('name' => $name)));
-			return $res;
+			$id = $this->helper->insert(TABLE_CONTENTCLASS, array('name' => $name));
+			return $this->getContentClass($id);
 		}
-		catch (Exception $e){
-			return array('success' => false);
-		}
+		catch (Exception $e)
+		{			
+			throw new Exception('Content Klasse mit dem Namen "'.$name.'" existiert schon!');
+		}					 
+	}
+
+	public function updateContentClass(ContentClass $instance){
+		
+	}
+	public function delContentClass($id){
+		$res = $this->helper->delete(TABLE_CONTENTCLASS, 'id='.$id);
+		return $res > 0;
 	}
 }
 
